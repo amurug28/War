@@ -100,7 +100,7 @@ public class QueueArray<Item> implements Iterable<Item>, Queue<Item>{
              */
             public boolean hasNext() {
                 //TODO Implement the hasNext() method
-                return count != items.length;
+                return count < size;
             }
 
             /**
@@ -113,10 +113,11 @@ public class QueueArray<Item> implements Iterable<Item>, Queue<Item>{
             public Item next() {
                 //TODO Implement the next() method
                 Item item = items[count];
-                if (hasNext()) {
-                    count++;
+                if (pos == items.length) {
+                    pos = 0;
                 }
-                else count = head;
+                else pos++;
+                count++;
                 return item;
             }
         });
