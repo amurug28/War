@@ -58,6 +58,32 @@ public class War {
         numTurns = 1;
 
         // TODO: ADD CODE HERE TO COMPLETE THIS METHOD...
+        while (!pile1.isEmpty() || !pile2.isEmpty()){
+            if (numTurns > 500)
+                break;
+            Card card1 = pile1.dequeue();
+            Card card2 = pile2.dequeue();
+            if (card1.compareTo(card2) > 0){
+                pile1.enqueue(card1);
+                pile1.enqueue(card2);
+            }
+            else if (card1.compareTo(card2) < 0){
+                pile2.enqueue(card1);
+                pile2.enqueue(card2);
+            }
+            else {
+                while (card1.compareTo(card2) == 0) {
+                    String cards = "" + card1.toString() + card2.toString();
+                    for (int i = 0; i < 2; i++) {
+                        cards += pile1.dequeue().toString() + pile2.dequeue().toString();
+                    }
+                    Pile pile3 = new Pile(cards);
+                    card1 = pile1.dequeue();
+                    card2 = pile2.dequeue();
+                }
+
+            }
+        }
 
     }
 }
